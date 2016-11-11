@@ -1,9 +1,10 @@
         <!--Product Image-->
         <!--Product Image click collapse the image-->
         <a class="product-grid__product" >
-            <img class="product-grid__img"   sizes="(min-width: 960px) 33vw, (min-width: 769px) 50vw, 100vw" alt="">
+          <!-- .6 the directive recieves the information from its binding scope. vidgame represents one product from the entire products list -->
+            <img ng-hide='pix' ng-click="pix=true" class="product-grid__img"  sizes="(min-width: 960px) 33vw, (min-width: 769px) 50vw, 100vw" ng-src='{{vidgame.image}}' alt="none">
         </a>
-        <a class="product-grid__product">
+        <a ng-show='pix' ng-click="pix=false" class="product-grid__product">
             show image
         </a>
 
@@ -11,11 +12,14 @@
         <div class="product-grid__meta">
             <!--Title click Should redirect to the product-details section. remember to pass along the product id so you can make an api call
         to get the specific product details-->
-            <h3 class="product-grid__name"><a><!--Title--></a></h3>
-            
+
+        <!-- *************************this is the most important concept of the app == details({id(the specific object that is passed to this specific directive ): vidgame(a specific product).id})
+        then the object is passed to the product-details.html page -->
+            <h3 class="product-grid__name"><a ui-sref="details({id: vidgame.id})">{{vidgame.title}}</a></h3>
+
             <!--Product Description-->
-            <h4 class="product-grid__sub"><!--Desc--></h4>
+            <h4 class="product-grid__sub">{{vidgame.desc}}</h4>
 
             <!--Product Price-->
-            <div class="product-grid__price"><!--Price--></div>
+            <div class="product-grid__price">{{vidgame.price}}</div>
         </div>
